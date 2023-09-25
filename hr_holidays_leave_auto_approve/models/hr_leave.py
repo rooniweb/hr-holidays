@@ -32,6 +32,7 @@ class HrLeave(models.Model):
                 "mail_activity_automation_skip": mail_skip or auto_approve,
             }
         )
+        # pylint: disable=context-overridden
         res = super(HrLeave, self.with_context(ctx)).create(values)
         res._apply_auto_approve_policy()
         return res
